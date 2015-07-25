@@ -3,6 +3,11 @@ set +x
 _PATH="$PATH"
 export PATH=/sbin
 
+# Alexa kernel is powered by SatrioDwiPrabowo
+# visit satriodwiprabowo.blogspot.com for more info
+# Copyright 2015 (c) Seraphic Development 
+
+
 # leds paths
 LED1_R_BRIGHTNESS_FILE="/sys/class/leds/LED1_R/brightness"
 LED2_R_BRIGHTNESS_FILE="/sys/class/leds/LED2_R/brightness"
@@ -36,7 +41,7 @@ busybox mkdir -m 755 -p /dev/block
 busybox mkdir -m 755 -p /dev/input
 busybox mkdir -m 555 -p /proc
 busybox mkdir -m 755 -p /sys
-busybox mkdir -m 755 -p /alexa-kernel
+busybox mkdir -m 755 -p /alexa-kernel/xssdp
 
 # create device nodes
 busybox mknod -m 600 /dev/block/mmcblk0 b 179 0
@@ -48,13 +53,30 @@ busybox mount -t proc proc /proc
 busybox mount -t sysfs sysfs /sys
 
 # keycheck
-busybox echo '50' > /sys/class/timed_output/vibrator/enable
+busybox echo '70' > /sys/class/timed_output/vibrator/enable
 busybox cat ${BOOTREC_EVENT} > /dev/keycheck&
 
 # LEDs activated
 echo '255' > $LED1_R_BRIGHTNESS_FILE
 echo '255' > $LED2_G_BRIGHTNESS_FILE
 echo '255' > $LED3_B_BRIGHTNESS_FILE
+busybox sleep 0.03
+echo '255' > $LED1_R_BRIGHTNESS_FILE
+echo '255' > $LED2_B_BRIGHTNESS_FILE
+echo '255' > $LED3_B_BRIGHTNESS_FILE
+busybox sleep 0.04
+echo '255' > $LED1_B_BRIGHTNESS_FILE
+echo '255' > $LED2_R_BRIGHTNESS_FILE
+echo '255' > $LED3_B_BRIGHTNESS_FILE
+busybox sleep 0.03
+echo '255' > $LED1_G_BRIGHTNESS_FILE
+echo '255' > $LED2_B_BRIGHTNESS_FILE
+echo '255' > $LED3_R_BRIGHTNESS_FILE
+busybox sleep 0.02
+echo '255' > $LED1_B_BRIGHTNESS_FILE
+echo '255' > $LED2_R_BRIGHTNESS_FILE
+echo '255' > $LED3_G_BRIGHTNESS_FILE
+busybox sleep 0.04
 echo '255' > $LED1_R_BRIGHTNESS_FILE
 echo '255' > $LED2_G_BRIGHTNESS_FILE
 echo '255' > $LED3_B_BRIGHTNESS_FILE
@@ -64,34 +86,34 @@ echo '16' > $LED1_R_CURRENT_FILE
 echo '16' > $LED2_G_CURRENT_FILE
 echo '16' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
-echo '32' > $LED1_R_CURRENT_FILE
+echo '32' > $LED1_B_CURRENT_FILE
 echo '32' > $LED2_G_CURRENT_FILE
-echo '32' > $LED3_B_CURRENT_FILE
+echo '32' > $LED3_R_CURRENT_FILE
 busybox sleep 0.05
 echo '64' > $LED1_R_CURRENT_FILE
-echo '64' > $LED2_G_CURRENT_FILE
-echo '64' > $LED3_B_CURRENT_FILE
+echo '64' > $LED2_B_CURRENT_FILE
+echo '64' > $LED3_R_CURRENT_FILE
 busybox sleep 0.05
 echo '92' > $LED1_R_CURRENT_FILE
 echo '92' > $LED2_G_CURRENT_FILE
 echo '92' > $LED3_B_CURRENT_FILE
 busybox sleep 1
 echo '64' > $LED1_R_CURRENT_FILE
-echo '64' > $LED2_G_CURRENT_FILE
+echo '64' > $LED2_R_CURRENT_FILE
 echo '64' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
-echo '32' > $LED1_R_CURRENT_FILE
-echo '32' > $LED2_G_CURRENT_FILE
-echo '32' > $LED3_B_CURRENT_FILE
+echo '32' > $LED1_B_CURRENT_FILE
+echo '32' > $LED2_B_CURRENT_FILE
+echo '32' > $LED3_G_CURRENT_FILE
 busybox sleep 0.05
-echo '0' > $LED1_R_BRIGHTNESS_FILE
-echo '0' > $LED2_G_BRIGHTNESS_FILE
-echo '0' > $LED3_B_BRIGHTNESS_FILE
+echo '0' > $LED1_B_BRIGHTNESS_FILE
+echo '0' > $LED2_R_BRIGHTNESS_FILE
+echo '0' > $LED3_R_BRIGHTNESS_FILE
 echo '0' > $LED1_R_CURRENT_FILE
 echo '0' > $LED2_G_CURRENT_FILE
 echo '0' > $LED3_B_CURRENT_FILE
 echo '16' > $LED1_R_CURRENT_FILE
-echo '16' > $LED2_G_CURRENT_FILE
+echo '16' > $LED2_R_CURRENT_FILE
 echo '16' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
 echo '32' > $LED1_R_CURRENT_FILE
@@ -99,25 +121,25 @@ echo '32' > $LED2_G_CURRENT_FILE
 echo '32' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
 echo '64' > $LED1_R_CURRENT_FILE
-echo '64' > $LED2_G_CURRENT_FILE
+echo '64' > $LED2_B_CURRENT_FILE
 echo '64' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
 echo '92' > $LED1_R_CURRENT_FILE
 echo '92' > $LED2_G_CURRENT_FILE
-echo '92' > $LED3_B_CURRENT_FILE
+echo '92' > $LED3_G_CURRENT_FILE
 busybox sleep 1
-echo '64' > $LED1_R_CURRENT_FILE
-echo '64' > $LED2_G_CURRENT_FILE
+echo '64' > $LED1_B_CURRENT_FILE
+echo '64' > $LED2_R_CURRENT_FILE
 echo '64' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
 echo '32' > $LED1_R_CURRENT_FILE
-echo '32' > $LED2_G_CURRENT_FILE
+echo '32' > $LED2_R_CURRENT_FILE
 echo '32' > $LED3_B_CURRENT_FILE
 busybox sleep 0.05
 echo '0' > $LED1_R_BRIGHTNESS_FILE
-echo '0' > $LED2_G_BRIGHTNESS_FILE
-echo '0' > $LED3_B_BRIGHTNESS_FILE
-echo '0' > $LED1_R_CURRENT_FILE
+echo '0' > $LED2_B_BRIGHTNESS_FILE
+echo '0' > $LED3_R_BRIGHTNESS_FILE
+echo '0' > $LED1_G_CURRENT_FILE
 echo '0' > $LED2_G_CURRENT_FILE
 echo '0' > $LED3_B_CURRENT_FILE
 
